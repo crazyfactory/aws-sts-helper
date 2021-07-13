@@ -1,0 +1,9 @@
+* text=auto
+
+###### Git
+.gitattributes text eol=lf
+.gitignore text eol=lf
+
+###### Global
+*.md text eol=lf
+*.sh text eol=lf
