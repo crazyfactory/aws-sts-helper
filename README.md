@@ -4,6 +4,22 @@ This provides two bash scripts to help take the pain from `get-session-token` an
 
 # Run
 
+### Run Globally
+
+Linux or git bash on Windows.
+
+Run from this repo root.
+
+```
+./set-aliases.sh
+```
+
+Run from home dir or restart terminal:
+
+```
+source .bashrc
+```
+
 ### Get Session Token
 
 To get a session token for `my_user`:
@@ -68,7 +84,7 @@ mfa_serial = arn:aws:iam::<ACC_ID>:mfa/my_user
 region = eu-central-1
 output = json
 source_profile = my_user
-role_arn = arn:aws:iam::475263026395:role/deployment_role
+role_arn = arn:aws:iam::<ACC_ID>:role/deployment_role
 ```
 
 Run:
