@@ -1,6 +1,9 @@
 #!/bin/bash
+set -eE
 
-source ./setup.sh
+TEMP_PWD=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
+source "${TEMP_PWD}/setup.sh"
 
 printf "\nEnter profile: "
 read -r PROFILE
