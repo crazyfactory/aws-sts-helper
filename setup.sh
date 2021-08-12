@@ -30,7 +30,7 @@ setCredentials () {
     aws configure --profile "${TEMP_PROFILE}" set aws_session_token "${TEMP_SESSION_TOKEN}"
 
     printf "\n\n${GREEN}Success.${NC}"
-    printf "\nYou can now use credentials for %s for the next 12 hours with:" "${TEMP_PROFILE}"
+    printf "\nYou can now use credentials for %s for the ${YELLOW}next ${1} hour(s)${NC} with:" "${TEMP_PROFILE}"
     printf "\n--profile %s" "${TEMP_PROFILE}"
     printf "\nEG: ${YELLOW}aws iam list-users --profile %s${NC}\n" "${TEMP_PROFILE}"
 }

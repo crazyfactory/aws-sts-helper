@@ -5,18 +5,25 @@ TEMP_PWD=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 
 source "${TEMP_PWD}/setup.sh"
 
-printf "\nEnter profile: "
-read -r PROFILE
-if [ -z "${PROFILE}" ]
-then
-    echo "No profile set.  Exiting."
+if [[ -f ~/.aws/config ]]; then
+
+    source "${TEMP_PWD}/get-profile.sh"
+
+    echo "$PROFILE"
+
+else
+
+    printf "\nNo ~/.aws/config file found.  Configure aws profiles."
+
 fi
 
-printf "\nAuthenticating with profile %s." "${PROFILE}"
-
+printf "\n${YELLOW}Getting mfa_serial:${NC}"
+printf "\n${RED}Check mfa_serial variable exists in [profile %s] block if this fails.${NC}" "${PROFILE}"
 MFA_SERIAL=$(aws configure --profile "${PROFILE}" get mfa_serial)
 
-printf "\n\nEnter token for %s: " "${MFA_SERIAL}"
+printf "\nAuthenticating with MFA serial: ${GREEN}%s${NC}" "${MFA_SERIAL}"
+
+printf "\n\nEnter token for ${GREEN}%s${NC}: " "${MFA_SERIAL}"
 read -r TOKEN
 if [ -z "${TOKEN}" ]
 then
@@ -29,4 +36,4 @@ JSON=$(aws sts get-session-token \
     --token-code "${TOKEN}" \
     )
 
-setCredentials
+setCredentials "12"
