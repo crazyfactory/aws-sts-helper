@@ -90,7 +90,7 @@ role_arn = arn:aws:iam::<ACC_ID>:role/deployment_role
 Run:
 
 ```
-./get-session-token.sh
+./assume-role.sh
 ```
 
 Choose:
