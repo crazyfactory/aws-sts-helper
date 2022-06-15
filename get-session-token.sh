@@ -36,4 +36,4 @@ JSON=$(aws sts get-session-token \
     --token-code "${TOKEN}" \
     )
 
-setCredentials "12"
+setCredentials "1"
