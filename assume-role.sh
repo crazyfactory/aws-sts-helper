@@ -48,4 +48,4 @@ JSON=$(aws sts assume-role \
     --token-code "${TOKEN}"
     )
 
-setCredentials "1"
+setCredentials "12"
