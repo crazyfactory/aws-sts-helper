@@ -45,6 +45,7 @@ JSON=$(aws sts assume-role \
     --role-arn "${ROLE_ARN}" \
     --role-session-name "access_from_${SOURCE_PROFILE}" \
     --serial-number "${MFA_SERIAL}" \
+    --duration-seconds 43200 \
     --token-code "${TOKEN}"
     )
 
