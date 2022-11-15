@@ -2,6 +2,20 @@
 
 This provides two bash scripts to help take the pain from `get-session-token` and `assume-role` calls.
 
+# Install
+
+You need jq
+
+## Windows
+
+Run in elevated git bash:
+
+`curl -L -o /usr/bin/jq.exe https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe`
+
+## Other
+
+https://stedolan.github.io/jq/download/
+
 # Run
 
 ### Run Globally
