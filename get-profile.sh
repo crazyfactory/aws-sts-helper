@@ -7,22 +7,28 @@ STRING=$(cat ~/.aws/config)
 # Use multi step sed, not grep to avoid utf8 bash issues across operating systems.
 
 # Get list of profiles
-STRING=$(sed '/^\(\[profile \|-t\(h\|o\)\)/!d' <<< "${STRING}")
-STRING="${STRING//\[profile /}"
-STRING="${STRING//\]/}"
 
 # Create array - requires bash 4
 while IFS= read -r line; do
     PROFILE_LIST+=("$line")
     echo $line
-done <<< "${STRING}"
+done <<< "$(aws configure list-profiles)"
 unset IFS
 
-IFS=$'\n' PROFILE_LIST=($(sort <<< "${PROFILE_LIST[*]}"))
+for PROFILE in "${PROFILE_LIST[@]}"
+do
+    PROFILE="$(echo $PROFILE | sed 's~[^[:alnum:]_]\+~~g')"
+
+    if [[ "$PROFILE" != *"_temp"* ]]; then
+        CLEANED_PROFILE_LIST+=( "${PROFILE}" )
+    fi
+done
+
+IFS=$'\n' CLEANED_PROFILE_LIST=($(sort <<< "${CLEANED_PROFILE_LIST[*]}"))
 unset IFS
 
 PS3='Please enter your choice: '
-select PROFILE in "${PROFILE_LIST[@]}"
+select PROFILE in "${CLEANED_PROFILE_LIST[@]}"
 do
     export PROFILE
     break
