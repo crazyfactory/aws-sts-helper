@@ -31,7 +31,7 @@ Run from this repo root.
 Run from home dir or restart terminal:
 
 ```
-source .bashrc
+source ~/.bashrc
 ```
 
 ### Get Session Token
